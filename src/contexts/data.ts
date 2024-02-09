@@ -111,12 +111,12 @@ const initialData: DataType = {
     ],
   },
   blogs: {
-    subtext: "",
+    subtext: `{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"Blogs and resources","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}`,
     items: [
       {
         title:
           "How to effectively crack leet code test cases with 100% accuracy",
-        image: null,
+        image: "https://picsum.photos/200/300",
         description: "medium.com",
       },
       {

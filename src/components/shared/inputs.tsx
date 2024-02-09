@@ -16,6 +16,11 @@ const Input = ({
   useEffect(() => {
     if (inputRef?.current) {
       inputRef.current.value = value || "";
+      inputRef.current.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+        }
+      });
     }
   }, []);
 
@@ -44,6 +49,11 @@ const Link = ({
   useEffect(() => {
     if (inputRef?.current) {
       inputRef.current.value = value || "";
+      inputRef.current.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+        }
+      });
     }
   }, []);
 

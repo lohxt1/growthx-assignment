@@ -1,5 +1,5 @@
 import { RoundedCard, RoundedBlockCardStatic } from "../shared/cards";
-import { ImagePicker } from "../shared/imagePicker";
+import { ImageStatic } from "../shared/imagePicker";
 import { BlogsData, useFormContext } from "../../contexts/form";
 import FreeTextInputStatic from "../shared/freeTextStatic";
 
@@ -48,9 +48,22 @@ const Blog = ({
 }) => {
   return (
     <RoundedCard key={`blog.${id}`}>
-      <ImagePicker id={`blog.${id}.image`} value={image} />
+      <ImageStatic
+        className="w-[40px] h-[40px]"
+        id={`blog.${id}.image`}
+        value={image}
+      />
       <div>{title}</div>
-      <div className="opacity-50">{description}</div>
+      <a
+        href={
+          description.includes("http") ? description : `https://${description}`
+        }
+        target="_blank"
+        className="flex flex-row items-center"
+      >
+        <div className="opacity-50 text-bl-one">{description}</div>&nbsp;
+        <div className="text-bl-one text-xs">🔗</div>
+      </a>
     </RoundedCard>
   );
 };

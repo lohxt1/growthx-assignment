@@ -2,7 +2,7 @@ import { useState } from "react";
 import CardsEditor from "../editors/cards";
 import CardsStatic from "../static/cards";
 
-const CardsBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const CardsBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (

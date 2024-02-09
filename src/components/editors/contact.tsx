@@ -3,7 +3,6 @@ import { RoundedBlockCard } from "../shared/cards";
 import { ImagePicker } from "../shared/imagePicker";
 import { Link } from "../shared/inputs";
 import { ContactsData, useFormContext } from "../../contexts/form";
-import { transformFormData } from "../../utils/form";
 import FreeTextInput from "../shared/freeText";
 
 const ContactsEditor = ({
@@ -27,8 +26,6 @@ const ContactsEditor = ({
     let subtext = formData.get("subtext");
     let image = formData.get("image");
     let link = formData.get("link");
-    let transformedData = transformFormData(formData, itemIdentifier);
-    console.log("contacts submit", transformedData);
     setData({
       ...(data || {}),
       [`${itemIdentifier}s`]: {
@@ -40,8 +37,6 @@ const ContactsEditor = ({
     });
     toggleEditMode(false);
   };
-
-  console.log("contacts editor", contactsData);
 
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
@@ -65,7 +60,11 @@ const ContactsEditor = ({
             className="text-lg font-normal"
           />
           <div className="flex flex-row gap-4 col-span-2 w-full">
-            <ImagePicker id={`image`} value={image} />
+            <ImagePicker
+              className="w-[40px] h-[40px]"
+              id={`image`}
+              value={image}
+            />
             <Link name={`link`} value={contactsData?.link} />
           </div>
         </RoundedBlockCard>

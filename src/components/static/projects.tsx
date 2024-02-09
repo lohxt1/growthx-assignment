@@ -1,7 +1,7 @@
 import { ProjectsData, useFormContext } from "../../contexts/form";
 import { RoundedBlockCardStatic, RoundedCard } from "../shared/cards";
 import FreeTextInputStatic from "../shared/freeTextStatic";
-import { ImagePicker } from "../shared/imagePicker";
+import { ImageStatic } from "../shared/imagePicker";
 
 const ProjectsStatic = ({
   toggleEditMode,
@@ -54,9 +54,22 @@ const Project = ({
 
   return (
     <RoundedCard key={`project.${id}`}>
-      <ImagePicker id={`project.${id}.image`} value={image} />
+      <ImageStatic
+        className="w-[40px] h-[40px]"
+        id={`project.${id}.image`}
+        value={image}
+      />
       <div>{title}</div>
-      <div className="opacity-50">{link}</div>
+      {link && (
+        <a
+          href={link.includes("http") ? link : `https://${link}`}
+          target="_blank"
+          className="flex flex-row items-center"
+        >
+          <div className="opacity-50 text-bl-one">{link}</div>&nbsp;
+          <div className="text-bl-one text-xs">🔗</div>
+        </a>
+      )}
       <FreeTextInputStatic
         value={descriptionData}
         className="text-sm leading-6"

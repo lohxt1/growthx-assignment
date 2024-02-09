@@ -2,7 +2,7 @@ import { useState } from "react";
 import BlogsEditor from "../editors/blogs";
 import BlogsStatic from "../static/blogs";
 
-const BlogsBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const BlogsBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (

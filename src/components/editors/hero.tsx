@@ -1,6 +1,6 @@
 import { ElementRef, FormEvent, useRef } from "react";
 import { HeroData, useFormContext } from "../../contexts/form";
-import { ImagePicker, ImagePickerBig } from "../shared/imagePicker";
+import { ImagePicker } from "../shared/imagePicker";
 import { Input } from "../shared/inputs";
 import FreeTextInput from "../shared/freeText";
 
@@ -57,7 +57,11 @@ const HeroEditor = ({
       <div className="w-full h-full flex flex-col justify-start gap-y-24">
         {/* site title */}
         <div className="flex flex-row gap-x-4 items-center justify-center h-fit w-fit">
-          <ImagePicker id={`siteImage`} value={siteImage} />
+          <ImagePicker
+            className="w-[40px] h-[40px]"
+            id={`siteImage`}
+            value={siteImage}
+          />
           <Input
             name="siteTitle"
             placeholder="Enter Site Title"
@@ -66,7 +70,11 @@ const HeroEditor = ({
         </div>
         <div className="flex flex-row grid grid-cols-3 gap-x-24">
           <div className="col-span-1 flex flex-col gap-y-8">
-            <ImagePickerBig id={`image`} value={image} />
+            <ImagePicker
+              className="w-full h-[400px] p-4"
+              id={`image`}
+              value={image}
+            />
             <div className="flex flex-col gap-y-2">
               <Input
                 name="name"

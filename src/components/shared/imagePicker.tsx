@@ -1,14 +1,24 @@
 import { Image } from "lucide-react";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from "react";
 
 interface EventTargetWithFiles extends EventTarget {
   files: FileList | null;
 }
 
-const ImagePicker = ({ id, value }: { id: string; value: any }) => {
+const ImagePicker = ({
+  id,
+  value,
+  className,
+}: {
+  id: string;
+  value: any;
+  className: string;
+}) => {
   const [_image, setImage] = useState<Blob | MediaSource | null>(
     value?.name?.length > 0 ? value : null
   );
+
+  const ref = useRef(null);
 
   const handleChange = (e: ChangeEvent<EventTargetWithFiles>) => {
     if (e.currentTarget.files) {
@@ -24,14 +34,24 @@ const ImagePicker = ({ id, value }: { id: string; value: any }) => {
 
   const image = _image && URL.createObjectURL(_image);
 
+  useEffect(() => {
+    if (ref.current && _image) {
+      var fileList = new DataTransfer();
+      //@ts-expect-error
+      fileList.items.add(_image);
+      //@ts-expect-error
+      ref.current.files = fileList.files;
+    }
+  }, []);
+
   return (
     <div
-      className={`w-[40px] h-[40px] border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
+      className={`${className} border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
       key={id}
     >
       {image ? (
         <>
-          <img src={image} className="h-[40px] w-[40px] rounded-xl" />
+          <img src={image} className="rounded-xl w-full h-full" />
           <div
             className="absolute w-full h-full top-0 left-0 opacity-0 hover:opacity-100 bg-re-one/30 flex justify-center items-center cursor-pointer text-tx-one"
             onClick={handleRemove}
@@ -41,16 +61,20 @@ const ImagePicker = ({ id, value }: { id: string; value: any }) => {
         </>
       ) : (
         <>
-          <label htmlFor={id} className="cursor-pointer">
-            <Image width={18} height={18} />
+          <label
+            htmlFor={id}
+            className="cursor-pointer w-full max-w-[200px] h-full p-2"
+          >
+            <Image className="w-full h-full" />
           </label>
         </>
       )}
       <input
+        ref={ref}
         hidden
         id={id}
         name={id}
-        // value={_image}
+        // defaultValue={[_image]}
         type="file"
         onChange={handleChange}
         accept="image/*"
@@ -59,57 +83,34 @@ const ImagePicker = ({ id, value }: { id: string; value: any }) => {
   );
 };
 
-const ImagePickerBig = ({ id, value }: { id: string; value: any }) => {
-  const [_image, setImage] = useState<Blob | MediaSource | null>(
+const ImageStatic = ({
+  id,
+  value,
+  className,
+}: {
+  id: string;
+  value: any;
+  className: string;
+}) => {
+  const [_image] = useState<Blob | MediaSource | null>(
     value?.name?.length > 0 ? value : null
   );
 
-  const handleChange = (e: ChangeEvent<EventTargetWithFiles>) => {
-    if (e.currentTarget.files) {
-      let file = e.currentTarget.files[0];
-      setImage(file);
-    }
-  };
-
-  const handleRemove = (e: MouseEvent<EventTarget>) => {
-    e.preventDefault();
-    setImage(null);
-  };
-
   const image = _image && URL.createObjectURL(_image);
+
+  const [seed] = useState(parseInt((Math.random() * 100).toString()));
 
   return (
     <div
-      className="w-full h-[400px] p-4 border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative"
+      className={`${className} border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
       key={id}
     >
-      {image ? (
-        <>
-          <img src={image} />
-          <div
-            className="absolute w-full h-full top-0 left-0 opacity-0 hover:opacity-100 bg-re-one/30 flex justify-center items-center cursor-pointer text-tx-one"
-            onClick={handleRemove}
-          >
-            Remove
-          </div>
-        </>
-      ) : (
-        <>
-          <label htmlFor={id} className="cursor-pointer">
-            <Image className="w-[100px] h-[100px]" />
-          </label>
-        </>
-      )}
-      <input
-        hidden
-        id={id}
-        name={id}
-        type="file"
-        onChange={handleChange}
-        accept="image/*"
+      <img
+        src={image || `https://picsum.photos/id/${seed}/500/500?grayscale`}
+        className="rounded-xl w-full h-full"
       />
     </div>
   );
 };
 
-export { ImagePicker, ImagePickerBig };
+export { ImagePicker, ImageStatic };

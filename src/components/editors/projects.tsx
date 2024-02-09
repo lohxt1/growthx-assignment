@@ -30,7 +30,6 @@ const ProjectsEditor = ({
     const formData = new FormData(formRef.current);
     let subtext = formData.get("subtext");
     let transformedData = transformFormData(formData, itemIdentifier);
-    console.log("projects submit", transformedData);
     setData({
       ...(data || {}),
       [`${itemIdentifier}s`]: {
@@ -105,7 +104,11 @@ const Project = ({
           <Trash width={15} />
         </button>
       </div>
-      <ImagePicker id={`project.${id}.image`} value={image} />
+      <ImagePicker
+        className="w-[40px] h-[40px]"
+        id={`project.${id}.image`}
+        value={image}
+      />
       <Input
         value={title}
         name={`project.${id}.title`}

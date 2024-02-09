@@ -102,7 +102,11 @@ const Blog = ({
           <Trash width={15} />
         </button>
       </div>
-      <ImagePicker id={`blog.${id}.image`} value={image} />
+      <ImagePicker
+        className="w-[40px] h-[40px]"
+        id={`blog.${id}.image`}
+        value={image}
+      />
       <Input
         name={`blog.${id}.title`}
         placeholder="Enter title here"

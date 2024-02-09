@@ -2,7 +2,7 @@ import { useState } from "react";
 import ExperienceEditor from "../editors/experience";
 import ExperiencesStatic from "../static/experiences";
 
-const ExperiencesBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const ExperiencesBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (

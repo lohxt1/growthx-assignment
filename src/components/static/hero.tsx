@@ -1,5 +1,5 @@
 import { useFormContext } from "../../contexts/form";
-import { ImagePicker, ImagePickerBig } from "../shared/imagePicker";
+import { ImageStatic } from "../shared/imagePicker";
 import FreeTextInputStatic from "../shared/freeTextStatic";
 import { Edit, Trash } from "lucide-react";
 
@@ -39,12 +39,20 @@ const HeroEditor = ({
       <div className="w-full h-full flex flex-col justify-start gap-y-24">
         {/* site title */}
         <div className="flex flex-row gap-x-4 items-center justify-center h-fit w-fit">
-          <ImagePicker id={`siteImage`} value={siteImage} />
+          <ImageStatic
+            className="w-[40px] h-[40px]"
+            id={`siteImage`}
+            value={siteImage}
+          />
           <div>{siteTitle}</div>
         </div>
         <div className="flex flex-row grid grid-cols-3 gap-x-24">
           <div className="col-span-1 flex flex-col gap-y-4">
-            <ImagePickerBig id={`image`} value={image} />
+            <ImageStatic
+              className="w-full h-[400px] p-4"
+              id={`image`}
+              value={image}
+            />
             <div>{name}</div>
             <div>{email}</div>
           </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import ContactsEditor from "../editors/contact";
 import ContactsStatic from "../static/contact";
 
-const ContactsBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const ContactsBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (

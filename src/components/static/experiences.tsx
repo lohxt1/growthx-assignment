@@ -1,5 +1,5 @@
 import { RoundedBlockCardStatic, RoundedCard } from "../shared/cards";
-import { ImagePicker } from "../shared/imagePicker";
+import { ImageStatic } from "../shared/imagePicker";
 import { ExperiencesData, useFormContext } from "../../contexts/form";
 import FreeTextInputStatic from "../shared/freeTextStatic";
 
@@ -55,7 +55,11 @@ const Experience = ({
   return (
     <RoundedCard key={`experience.${id}`}>
       <div className="flex flex-row gap-8 items-center">
-        <ImagePicker id={`experience.${id}.image`} value={image} />
+        <ImageStatic
+          className="w-[40px] h-[40px]"
+          id={`experience.${id}.image`}
+          value={image}
+        />
         <div className="flex flex-row gap-2 items-center">
           <div className="font-bold text-md">{title}</div>
           <div className="text-sm">{designation}</div>

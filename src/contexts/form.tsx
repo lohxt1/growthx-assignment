@@ -162,11 +162,7 @@ const FormContextProvider = ({ children }: { children: React.ReactNode }) => {
   const removeItem = (sectionId: SectionsWithItems, idx: number) => {
     let sectionData = data[sectionId] as SectionsDataWithItems;
     let sectionItems = sectionData["items"] || [];
-    let a = [1, 2, 3, 4, 5];
-    console.log("remove", sectionItems, idx, a);
     sectionItems.splice(idx, 1);
-    a.splice(idx, 1);
-    console.log("remove", sectionItems, idx, a);
     setData({
       ...(data || {}),
       [sectionId]: {

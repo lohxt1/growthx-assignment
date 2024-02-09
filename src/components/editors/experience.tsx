@@ -109,7 +109,11 @@ const Experience = ({
         </button>
       </div>
       <div className="flex flex-row gap-4">
-        <ImagePicker id={`experience.${id}.image`} value={image} />
+        <ImagePicker
+          className="w-[40px] h-[40px]"
+          id={`experience.${id}.image`}
+          value={image}
+        />
         <div className="flex flex-col gap-2">
           <Input
             value={title}

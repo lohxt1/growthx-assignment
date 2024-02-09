@@ -1,5 +1,5 @@
 import { RoundedBlockCardStatic } from "../shared/cards";
-import { ImagePicker } from "../shared/imagePicker";
+import { ImageStatic } from "../shared/imagePicker";
 import { ContactsData, useFormContext } from "../../contexts/form";
 import FreeTextInputStatic from "../shared/freeTextStatic";
 
@@ -30,8 +30,24 @@ const ContactsStatic = ({
           className="text-lg font-normal"
         />
         <div className="flex flex-row gap-4 col-span-2 w-full items-center">
-          <ImagePicker id={`image`} value={image} />
-          <div className="text-lg font-normal">{contactsData?.link}</div>
+          <ImageStatic
+            className="w-[40px] h-[40px]"
+            id={`image`}
+            value={image}
+          />
+          <a
+            href={
+              contactsData?.link.includes("http")
+                ? contactsData?.link
+                : `https://${contactsData?.link}`
+            }
+            target="_blank"
+            className="flex flex-row items-center text-lg font-normal"
+          >
+            <div className="opacity-50 text-bl-one">{contactsData?.link}</div>
+            &nbsp;
+            <div className="text-bl-one text-xs">🔗</div>
+          </a>
         </div>
       </RoundedBlockCardStatic>
     </div>

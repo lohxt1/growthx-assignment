@@ -2,7 +2,7 @@ import { useState } from "react";
 import ProjectsEditor from "../editors/projects";
 import ProjectsStatic from "../static/projects";
 
-const ProjectsBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const ProjectsBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (

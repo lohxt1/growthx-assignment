@@ -2,7 +2,7 @@ import { useState } from "react";
 import AboutEditor from "../editors/about";
 import AboutStatic from "../static/about";
 
-const AboutBlock = ({ editMode = false }: { editMode?: boolean }) => {
+const AboutBlock = ({ editMode = true }: { editMode?: boolean }) => {
   const [isEditMode, toggleEditMode] = useState(editMode);
 
   return (
