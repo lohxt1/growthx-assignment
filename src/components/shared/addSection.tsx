@@ -48,7 +48,7 @@ const AddSection = () => {
       <div
         className={`flex flex-row justify-center items-center h-fit w-full gap-2 bg-bg-one p-2 border border-sh-one ${
           unselectedSections.length <= 0
-            ? "opacity-50 cursor-not-allowed"
+            ? "text-tx-one/30 cursor-not-allowed"
             : "cursor-pointer"
         }`}
         onClick={() => {

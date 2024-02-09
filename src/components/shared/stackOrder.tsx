@@ -48,7 +48,7 @@ const StackOrder = () => {
   return (
     <div className="flex flex-col" ref={ref}>
       <div
-        className="flex flex-row items-center border border-sh-one p-2 gap-x-2 cursor-pointer"
+        className="flex flex-row items-center border border-sh-one p-2 gap-x-2 cursor-pointer bg-bg-one"
         onClick={() => {
           toggleMenu((_) => !_);
         }}
