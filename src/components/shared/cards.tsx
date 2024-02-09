@@ -13,7 +13,7 @@ const RoundedBlockCard = ({
   toggleEditMode: (v: boolean) => void;
 }) => {
   return (
-    <div className="w-full flex flex-col col-span-2 gap-2">
+    <div className="w-full flex flex-col col-span-2 gap-2 h-fit">
       <div className="flex flex-row gap-x-4 w-full justify-end text-sm h-[30px]">
         <button
           className="text-tx-two py-1 px-2 rounded-xl"
@@ -54,7 +54,7 @@ const RoundedBlockCardStatic = ({
   deleteSection?: (v: SectionType) => void;
 }) => {
   return (
-    <div className={`w-full flex flex-col col-span-2 gap-2`}>
+    <div className={`w-full flex flex-col col-span-2 gap-2 h-fit`}>
       {toggleEditMode && (
         <div className="flex flex-row gap-x-4 w-full justify-end text-sm h-[30px]">
           <button

@@ -43,7 +43,7 @@ const ExperienceEditor = ({
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="w-full h-full flex flex-col justify-start gap-y-24 grid grid-cols-3">
-        <div className="col-span-1"></div>
+        <div className="col-span-1 h-fit"></div>
         <RoundedBlockCard
           label={"Experience"}
           toggleEditMode={toggleEditMode}

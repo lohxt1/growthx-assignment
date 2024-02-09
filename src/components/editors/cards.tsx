@@ -40,7 +40,7 @@ const CardsEditor = ({
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="w-full h-full flex flex-col justify-start gap-y-24 grid grid-cols-3">
-        <div className="col-span-1"></div>
+        <div className="col-span-1 h-fit"></div>
         <RoundedBlockCard toggleEditMode={toggleEditMode} id="cards">
           <div className="flex flex-row grid grid-cols-2 gap-8 col-span-2">
             {cardsItems.map((item, idx) => (
