@@ -11,7 +11,7 @@ import HeroEditor from "./components/static/hero";
 function Preview() {
   return (
     <div
-      className={`light flex min-h-screen h-fit w-[calc(100%)] flex-col relative bg-bg-one text-tx-one justify-center items-center`}
+      className={`light flex min-h-screen h-fit w-[calc(100%)] flex-col relative bg-bg-one text-tx-one justify-center items-center px-24`}
     >
       <FormContextProvider>
         <Nav />
