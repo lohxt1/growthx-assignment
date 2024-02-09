@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useLocalStorage = <T, U>(key: string, initalState: U) => {
+const useLocalStorage = <_T, U>(key: string, initalState: U) => {
   const localStorageValue = JSON.parse(
     localStorage.getItem(key) as string
   ) as U;
