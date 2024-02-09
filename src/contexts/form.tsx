@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { initialData, itemInitMap } from "./data";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export type HeroData = {
   siteTitle: string;
@@ -130,7 +131,10 @@ const FormContextProvider = ({ children }: { children: React.ReactNode }) => {
     "experiences",
     "contacts",
   ]);
-  const [data, setData] = useState<DataType>(initialData);
+  const [data, setData] = useLocalStorage<string, DataType>(
+    "data",
+    initialData
+  );
 
   const addSection = (section: SectionType) => {
     setSections([...sections, section]);
