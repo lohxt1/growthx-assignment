@@ -204,7 +204,7 @@ const FreeTextInput = ({
 
   return (
     <div
-      className={`relative gap-y-2 flex flex-col w-full mb-14 border border-sh-one rounded-lg p-1 ${className}`}
+      className={`relative gap-y-2 flex flex-col w-full mb-14 border border-sh-one rounded-lg p-1 min-h-[50px] ${className}`}
       key={`editor-${id}`}
     >
       <LexicalComposer
