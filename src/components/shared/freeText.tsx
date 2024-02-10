@@ -10,6 +10,10 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { ListNode, ListItemNode } from "@lexical/list";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
+import { HashtagNode } from "@lexical/hashtag";
+import { $setBlocksType } from "@lexical/selection";
+import { $createHeadingNode, HeadingNode } from "@lexical/rich-text";
 import { useEffect, useState } from "react";
 import {
   INSERT_ORDERED_LIST_COMMAND,
@@ -25,6 +29,14 @@ import {
 import { $isRangeSelection, $getSelection, type TextFormatType } from "lexical";
 
 const theme = {
+  heading: {
+    h1: "TextEditorTheme__h1",
+    h2: "TextEditorTheme__h2",
+    h3: "TextEditorTheme__h3",
+    h4: "TextEditorTheme__h4",
+    h5: "TextEditorTheme__h5",
+    h6: "TextEditorTheme__h6",
+  },
   text: {
     bold: "TextEditorTheme__textBold",
     italic: "TextEditorTheme__textItalic",
@@ -80,6 +92,51 @@ const valueInit = {
     version: 1,
   },
 };
+
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+function HeadingToolbarPlugin(): JSX.Element {
+  const [editor] = useLexicalComposerContext();
+  const headingTags: HeadingTag[] = ["h1", "h2", "h3", "h4", "h5", "h6"];
+  const onClick = (tag: HeadingTag): void => {
+    editor.update(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        $setBlocksType(selection, () => $createHeadingNode(tag));
+      }
+    });
+  };
+
+  return (
+    <div className="flex flex-row gap-2 relative border-r border-sh-three p-2 py-1">
+      <select
+        onChange={(e) => {
+          if (e.target.value.length > 0) {
+            onClick(e.target.value as HeadingTag);
+          }
+        }}
+        className="w-[100px] p-2 bg-transparent cursor-pointer"
+      >
+        <option
+          value={""}
+          className="pointer-events-none hover:bg-transparent p-2 w-[30px] opacity-30 cursor-none"
+        >
+          Heading
+        </option>
+        <hr />
+        {headingTags.map((tag) => (
+          <option
+            key={tag}
+            className="cursor-pointer text-[17px] px-4 w-[30px]"
+            value={tag}
+          >
+            {tag.toUpperCase()}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 
 function TextFormatToolbarPlugin(): JSX.Element {
   const [editor] = useLexicalComposerContext();
@@ -150,7 +207,7 @@ function ListToolbarPlugin(): JSX.Element {
     editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined);
   };
   return (
-    <div className="flex flex-row gap-2 relative border-l border-sh-three  p-2 py-1">
+    <div className="flex flex-row gap-2 relative border-l border-sh-three p-2 py-1">
       <div
         onClick={() => {
           onClick("ol");
@@ -189,7 +246,7 @@ const FreeTextInput = ({
     },
     theme,
     editorState: value || JSON.stringify(valueInit),
-    nodes: [ListNode, ListItemNode],
+    nodes: [ListNode, ListItemNode, HeadingNode, HashtagNode],
   };
 
   const [editorState, setEditorState] = useState(
@@ -211,11 +268,13 @@ const FreeTextInput = ({
         initialConfig={initialConfig}
         key={`editor-composer-${id}`}
       >
-        <div className="flex flex-row gap-2 absolute bottom-[-38px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center">
+        <div className="flex flex-row gap-2 absolute bottom-[-50px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center text-sm">
+          <HeadingToolbarPlugin />
           <TextFormatToolbarPlugin />
           <ListToolbarPlugin />
         </div>
         <ListPlugin />
+        <HashtagPlugin />
         <RichTextPlugin
           contentEditable={<ContentEditable className="contentEditable" />}
           placeholder={

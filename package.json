@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lexical/hashtag": "^0.13.1",
     "@lexical/link": "^0.13.1",
     "@lexical/list": "^0.13.1",
     "@lexical/react": "^0.13.1",
     "@lexical/rich-text": "^0.13.1",
+    "@lexical/selection": "^0.13.1",
     "lexical": "^0.13.1",
     "lucide-react": "^0.323.0",
     "react": "^18.2.0",

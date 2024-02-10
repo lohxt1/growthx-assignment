@@ -8,8 +8,18 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { ListNode, ListItemNode } from "@lexical/list";
+import { HashtagNode } from "@lexical/hashtag";
+import { HeadingNode } from "@lexical/rich-text";
 
 const theme = {
+  heading: {
+    h1: "TextEditorTheme__h1",
+    h2: "TextEditorTheme__h2",
+    h3: "TextEditorTheme__h3",
+    h4: "TextEditorTheme__h4",
+    h5: "TextEditorTheme__h5",
+    h6: "TextEditorTheme__h6",
+  },
   text: {
     bold: "TextEditorTheme__textBold",
     italic: "TextEditorTheme__textItalic",
@@ -81,7 +91,7 @@ const FreeTextInputStatic = ({
     },
     theme,
     editable: false,
-    nodes: [ListNode, ListItemNode],
+    nodes: [ListNode, ListItemNode, HeadingNode, HashtagNode],
   };
 
   return (

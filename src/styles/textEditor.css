@@ -2,6 +2,37 @@
   
   /* ClassNames refered from the official playground demo for lexical */
   
+  .TextEditorTheme__h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin: 0;
+  }
+  .TextEditorTheme__h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin: 0;
+  }
+  .TextEditorTheme__h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin: 0;
+  }
+  .TextEditorTheme__h4 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin: 0;
+  }
+  .TextEditorTheme__h5 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    margin: 0;
+  }
+  .TextEditorTheme__h6 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    margin: 0;
+  }
+  
   .TextEditorTheme__indent {
     --lexical-indent-base-value: 40px;
   }
