@@ -26,6 +26,7 @@ const theme = {
     underline: "TextEditorTheme__textUnderline",
     strikethrough: "TextEditorTheme__textStrikethrough ",
     underlineStrikethrough: "TextEditorTheme__textUnderlineStrikethrough",
+    highlight: "TextEditorTheme__hashtag",
   },
   list: {
     checklist: "TextEditorTheme__checklist",

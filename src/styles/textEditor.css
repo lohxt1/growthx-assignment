@@ -51,9 +51,12 @@
   .TextEditorTheme__textUnderlineStrikethrough {
     text-decoration: underline line-through;
   }
+  mark {
+    background-color: transparent;
+  }
   .TextEditorTheme__hashtag {
-    background-color: rgba(88, 144, 255, 0.15);
-    border-bottom: 1px solid rgba(88, 144, 255, 0.3);
+    background-color: #0094ff99;
+    border-bottom: 1px solid #0094ff;
   }
   .TextEditorTheme__ol1 {
     padding: 0;

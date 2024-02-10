@@ -21,6 +21,7 @@ import {
 } from "@lexical/list";
 import {
   BoldIcon,
+  Highlighter,
   ItalicIcon,
   ListIcon,
   ListOrdered,
@@ -43,6 +44,7 @@ const theme = {
     underline: "TextEditorTheme__textUnderline",
     strikethrough: "TextEditorTheme__textStrikethrough ",
     underlineStrikethrough: "TextEditorTheme__textUnderlineStrikethrough",
+    highlight: "TextEditorTheme__hashtag",
   },
   list: {
     checklist: "TextEditorTheme__checklist",
@@ -148,6 +150,8 @@ function TextFormatToolbarPlugin(): JSX.Element {
         return <ItalicIcon className="w-[20px] h-[20px]" />;
       case "underline":
         return <Underline className="w-[20px] h-[20px]" />;
+      case "highlight":
+        return <Highlighter className="w-[20px] h-[20px]" />;
       default:
         return null;
     }
@@ -156,6 +160,10 @@ function TextFormatToolbarPlugin(): JSX.Element {
     editor.update(() => {
       try {
         const selection = $getSelection();
+        let selectedText = selection?.getTextContent();
+        if (format == "highlight" && selectedText && selectedText[0] !== "#") {
+          return;
+        }
         if ($isRangeSelection(selection)) {
           selection.formatText(format);
         }
@@ -168,6 +176,7 @@ function TextFormatToolbarPlugin(): JSX.Element {
     "bold",
     "italic",
     "underline",
+    "highlight",
   ];
   return (
     <>
@@ -190,9 +199,25 @@ function TextFormatToolbarPlugin(): JSX.Element {
 function OnChangePlugin({ onChange }: { onChange: (v: any) => void }) {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
-    return editor.registerUpdateListener(({ editorState }) => {
-      onChange(editorState);
-    });
+    const removeTransform = editor.registerNodeTransform(
+      HashtagNode,
+      (textNode) => {
+        if (!textNode.hasFormat("highlight")) {
+          textNode.toggleFormat("highlight");
+        }
+      }
+    );
+
+    const removeEditorChange = editor.registerUpdateListener(
+      ({ editorState }) => {
+        onChange(editorState);
+      }
+    );
+
+    return () => {
+      removeTransform();
+      removeEditorChange();
+    };
   }, [editor, onChange]);
   return null;
 }
@@ -255,7 +280,6 @@ const FreeTextInput = ({
 
   const onChange = (_editorState: any) => {
     const editorStateJSON = _editorState.toJSON();
-    console.log(editorStateJSON);
     setEditorState(JSON.stringify(editorStateJSON));
   };
 
