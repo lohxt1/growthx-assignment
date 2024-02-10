@@ -13,7 +13,10 @@ const CardsStatic = ({
   let cardsItems = cardsData?.items || [];
 
   return (
-    <div className="w-full h-full flex flex-col justify-start gap-y-24 grid grid-cols-3">
+    <div
+      className="w-full h-full flex flex-col justify-start gap-y-24 grid grid-cols-3"
+      id="skills"
+    >
       <div className="col-span-1 h-fit"></div>
       <RoundedBlockCardStatic
         toggleEditMode={toggleEditMode}

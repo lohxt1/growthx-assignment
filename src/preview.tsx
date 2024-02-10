@@ -6,7 +6,7 @@ import ExperienceStatic from "./components/static/experiences";
 import ProjectsStatic from "./components/static/projects";
 import CardsStatic from "./components/static/cards";
 import AboutStatic from "./components/static/about";
-import HeroEditor from "./components/static/hero";
+import HeroStatic from "./components/static/hero";
 
 function Preview() {
   return (
@@ -24,7 +24,7 @@ function Preview() {
 export default Preview;
 
 let sectionComponentMap = {
-  hero: <HeroEditor />,
+  hero: <HeroStatic />,
   about: <AboutStatic />,
   cards: <CardsStatic />,
   projects: <ProjectsStatic />,

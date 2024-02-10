@@ -3,7 +3,7 @@ import { ImageStatic } from "../shared/imagePicker";
 import FreeTextInputStatic from "../shared/freeTextStatic";
 import { Edit, Trash } from "lucide-react";
 
-const HeroEditor = ({
+const HeroStatic = ({
   toggleEditMode,
 }: {
   toggleEditMode?: (v: boolean) => void;
@@ -15,7 +15,7 @@ const HeroEditor = ({
   } = data;
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full" id="hero">
       {toggleEditMode && (
         <div className="flex flex-row gap-x-4 w-full justify-end text-sm h-[30px]">
           <button
@@ -38,13 +38,23 @@ const HeroEditor = ({
       )}
       <div className="w-full h-full flex flex-col justify-start gap-y-24">
         {/* site title */}
-        <div className="flex flex-row gap-x-4 items-center justify-center h-fit w-fit">
-          <ImageStatic
-            className="w-[40px] h-[40px]"
-            id={`siteImage`}
-            value={siteImage}
-          />
-          <div>{siteTitle}</div>
+        <div className="flex flex-row gap-x-4 items-center justify-between h-fit w-full">
+          <div className="flex flex-row gap-4 items-center">
+            <ImageStatic
+              className="w-[40px] h-[40px]"
+              id={`siteImage`}
+              value={siteImage}
+            />
+            <div>{siteTitle}</div>
+          </div>
+          <div className="flex flex-row gap-16 items-center font-medium">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#experiences">Experiences</a>
+            <a href="#connect">Connect</a>
+          </div>
         </div>
         <div className="flex flex-row grid grid-cols-3 gap-x-24">
           <div className="col-span-1 flex flex-col gap-y-8">
@@ -71,4 +81,4 @@ const HeroEditor = ({
   );
 };
 
-export default HeroEditor;
+export default HeroStatic;
