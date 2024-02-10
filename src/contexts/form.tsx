@@ -132,7 +132,7 @@ const FormContextProvider = ({ children }: { children: React.ReactNode }) => {
     "contacts",
   ]);
   const [data, setData] = useLocalStorage<string, DataType>(
-    "datav1",
+    "datav2",
     initialData
   );
 

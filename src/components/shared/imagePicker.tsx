@@ -123,7 +123,7 @@ const ImageStatic = ({
     image &&
       fetch(image)
         .then((response) => response.blob())
-        .then((res) => {
+        .then(() => {
           toggleURLValid(true);
         });
   }, []);
