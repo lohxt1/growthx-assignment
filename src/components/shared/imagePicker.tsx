@@ -14,16 +14,19 @@ const ImagePicker = ({
   value: any;
   className: string;
 }) => {
-  const [_image, setImage] = useState<Blob | MediaSource | null>(
-    value?.name?.length > 0 ? value : null
+  const [_image, setImage] = useState<string | null>(
+    value?.length > 0 ? value : null
   );
+  const [isURLValid, toggleURLValid] = useState(false);
 
   const ref = useRef(null);
 
   const handleChange = (e: ChangeEvent<EventTargetWithFiles>) => {
     if (e.currentTarget.files) {
       let file = e.currentTarget.files[0];
-      setImage(file);
+      let _file = URL.createObjectURL(file);
+      toggleURLValid(true);
+      setImage(_file);
     }
   };
 
@@ -32,16 +35,32 @@ const ImagePicker = ({
     setImage(null);
   };
 
-  const image = _image && URL.createObjectURL(_image);
+  const image = _image;
 
-  useEffect(() => {
+  const initImage = async () => {
     if (ref.current && _image) {
       var fileList = new DataTransfer();
+
+      const _file = await fetch(_image)
+        .then((response) => response.blob())
+        .then((blob) => {
+          toggleURLValid(true);
+          const file = new File([blob], "filename", { type: "image/*" });
+          return file;
+        })
+        .catch((error) => {
+          console.error("blob fetch error", error);
+        });
+
       //@ts-expect-error
-      fileList.items.add(_image);
+      fileList.items.add(_file);
       //@ts-expect-error
       ref.current.files = fileList.files;
     }
+  };
+
+  useEffect(() => {
+    initImage();
   }, []);
 
   return (
@@ -49,7 +68,7 @@ const ImagePicker = ({
       className={`${className} border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
       key={id}
     >
-      {image ? (
+      {image && isURLValid ? (
         <>
           <img src={image} className="rounded-xl w-full h-full" />
           <div
@@ -92,23 +111,34 @@ const ImageStatic = ({
   value: any;
   className: string;
 }) => {
-  const [_image] = useState<Blob | MediaSource | null>(
-    value?.name?.length > 0 ? value : null
-  );
+  const [_image] = useState<string | null>(value?.length > 0 ? value : null);
 
-  const image = _image && URL.createObjectURL(_image);
+  const [isURLValid, toggleURLValid] = useState(false);
+
+  const image = _image;
 
   const [seed] = useState(parseInt((Math.random() * 100).toString()));
+
+  useEffect(() => {
+    image &&
+      fetch(image)
+        .then((response) => response.blob())
+        .then((res) => {
+          toggleURLValid(true);
+        });
+  }, []);
 
   return (
     <div
       className={`${className} border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
       key={id}
     >
-      <img
-        src={image || `https://picsum.photos/id/${seed}/500/500?grayscale`}
-        className="rounded-xl w-full h-full"
-      />
+      {isURLValid && (
+        <img
+          src={image || `https://picsum.photos/id/${seed}/500/500?grayscale`}
+          className="rounded-xl w-full h-full"
+        />
+      )}
     </div>
   );
 };

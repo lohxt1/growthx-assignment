@@ -3,6 +3,7 @@ import { HeroData, useFormContext } from "../../contexts/form";
 import { ImagePicker } from "../shared/imagePicker";
 import { Input } from "../shared/inputs";
 import FreeTextInput from "../shared/freeText";
+import { transformImageFileToBlobUrls } from "../../utils/form";
 
 const HeroEditor = ({
   toggleEditMode,
@@ -23,6 +24,7 @@ const HeroEditor = ({
     const formData = new FormData(formRef.current);
     let keys = [...formData.keys()];
     let values = [...formData.values()];
+    values = transformImageFileToBlobUrls(values);
     let _data: Record<string, any> = {};
     keys.forEach((key, idx) => {
       _data[key] = values[idx];

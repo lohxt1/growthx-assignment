@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { FormContextProvider, useFormContext } from "./contexts/form";
+import { useFormContext } from "./contexts/form";
 import HeroBlock from "./components/blocks/hero";
 import AboutBlock from "./components/blocks/about";
 import CardsBlock from "./components/blocks/cards";
@@ -17,13 +17,11 @@ function App() {
     <div
       className={`light flex min-h-screen h-fit w-[calc(100%)] flex-col relative bg-bg-one text-tx-one justify-center items-center px-24`}
     >
-      <FormContextProvider>
-        <Nav />
-        <div className="flex min-h-screen h-fit w-[calc(100%)] flex-col relative max-w-[1400px] gap-y-24 mt-[100px]">
-          <Blocks />
-        </div>
-        <Toolbar />
-      </FormContextProvider>
+      <Nav />
+      <div className="flex min-h-screen h-fit w-[calc(100%)] flex-col relative max-w-[1400px] gap-y-24 mt-[100px]">
+        <Blocks />
+      </div>
+      <Toolbar />
     </div>
   );
 }
@@ -54,30 +52,3 @@ const Blocks = () => {
     </>
   );
 };
-
-// Hero section
-// About Me section
-// Skillsets
-// projects
-// experience
-// CTA
-
-// image upload small icon
-// add link text button
-// rich text editor
-// input element
-
-// const d = {
-//   hero: {
-//     title: "",
-//     description: "",
-//     image: "",
-//   },
-//   about: {
-//     body: ''
-//   }
-// };
-
-// const ed = {
-
-// }

@@ -1,4 +1,4 @@
-import { FormContextProvider, useFormContext } from "./contexts/form";
+import { useFormContext } from "./contexts/form";
 import Nav from "./components/shared/nav";
 import BlogsStatic from "./components/static/blogs";
 import ContactsStatic from "./components/static/contact";
@@ -13,12 +13,10 @@ function Preview() {
     <div
       className={`light flex min-h-screen h-fit w-[calc(100%)] flex-col relative bg-bg-one text-tx-one justify-center items-center px-24`}
     >
-      <FormContextProvider>
-        <Nav />
-        <div className="flex min-h-screen h-fit w-[calc(100%)] flex-col relative max-w-[1400px] gap-y-24 mt-[100px]">
-          <Blocks />
-        </div>
-      </FormContextProvider>
+      <Nav />
+      <div className="flex min-h-screen h-fit w-[calc(100%)] flex-col relative max-w-[1400px] gap-y-24 mt-[100px]">
+        <Blocks />
+      </div>
     </div>
   );
 }

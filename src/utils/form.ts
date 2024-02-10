@@ -1,6 +1,7 @@
 const transformFormData = (formData: any, itemIdentifier: string) => {
   let keys = [...formData.keys()];
   let values = [...formData.values()];
+  values = transformImageFileToBlobUrls(values);
   let allFormData = keys.map((key, idx) => ({
     key,
     value: values[idx],
@@ -23,4 +24,17 @@ const transformFormData = (formData: any, itemIdentifier: string) => {
   };
 };
 
-export { transformFormData };
+const transformImageFileToBlobUrls = (values: any[]) => {
+  return values.map((value) => {
+    if (value?.type?.includes("image") || value?.type?.includes("octet")) {
+      if (value?.name?.length > 0) {
+        return URL.createObjectURL(value);
+      } else {
+        return null;
+      }
+    }
+    return value;
+  });
+};
+
+export { transformFormData, transformImageFileToBlobUrls };

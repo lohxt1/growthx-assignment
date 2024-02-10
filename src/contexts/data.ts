@@ -116,7 +116,7 @@ const initialData: DataType = {
       {
         title:
           "How to effectively crack leet code test cases with 100% accuracy",
-        image: "https://picsum.photos/200/300",
+        image: null,
         description: "medium.com",
       },
       {
