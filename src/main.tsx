@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/global.css";
+import "./styles/textEditor.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Preview from "./preview.tsx";
 import { FormContextProvider } from "./contexts/form.tsx";

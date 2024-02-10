@@ -1,0 +1,138 @@
+  
+  
+  /* ClassNames refered from the official playground demo for lexical */
+  
+  .TextEditorTheme__indent {
+    --lexical-indent-base-value: 40px;
+  }
+  .TextEditorTheme__textBold {
+    font-weight: bold;
+  }
+  .TextEditorTheme__textItalic {
+    font-style: italic;
+  }
+  .TextEditorTheme__textUnderline {
+    text-decoration: underline;
+  }
+  .TextEditorTheme__textStrikethrough {
+    text-decoration: line-through;
+  }
+  .TextEditorTheme__textUnderlineStrikethrough {
+    text-decoration: underline line-through;
+  }
+  .TextEditorTheme__hashtag {
+    background-color: rgba(88, 144, 255, 0.15);
+    border-bottom: 1px solid rgba(88, 144, 255, 0.3);
+  }
+  .TextEditorTheme__ol1 {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+    list-style: number;
+  }
+  .TextEditorTheme__ol2 {
+    padding: 0;
+    margin: 0;
+    list-style-type: upper-alpha;
+    list-style-position: inside;
+  }
+  .TextEditorTheme__ol3 {
+    padding: 0;
+    margin: 0;
+    list-style-type: lower-alpha;
+    list-style-position: inside;
+  }
+  .TextEditorTheme__ol4 {
+    padding: 0;
+    margin: 0;
+    list-style-type: upper-roman;
+    list-style-position: inside;
+  }
+  .TextEditorTheme__ol5 {
+    padding: 0;
+    margin: 0;
+    list-style-type: lower-roman;
+    list-style-position: inside;
+  }
+  .TextEditorTheme__ul {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+    list-style: disc;
+  }
+  .TextEditorTheme__ol {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+    list-style: number;
+  }
+  .TextEditorTheme__listItem {
+    margin: 0 20px;
+  }
+  .TextEditorTheme__listItemChecked,
+  .TextEditorTheme__listItemUnchecked {
+    position: relative;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
+    list-style-type: none;
+    outline: none;
+  }
+  .TextEditorTheme__listItemChecked {
+    text-decoration: line-through;
+  }
+  .TextEditorTheme__listItemUnchecked:before,
+  .TextEditorTheme__listItemChecked:before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    top: 2px;
+    left: 0;
+    cursor: pointer;
+    display: block;
+    background-size: cover;
+    position: absolute;
+  }
+  .TextEditorTheme__listItemUnchecked[dir='rtl']:before,
+  .TextEditorTheme__listItemChecked[dir='rtl']:before {
+    left: auto;
+    right: 0;
+  }
+  .TextEditorTheme__listItemUnchecked:focus:before,
+  .TextEditorTheme__listItemChecked:focus:before {
+    box-shadow: 0 0 0 2px #a6cdfe;
+    border-radius: 2px;
+  }
+  .TextEditorTheme__listItemUnchecked:before {
+    border: 1px solid #999;
+    border-radius: 2px;
+  }
+  .TextEditorTheme__listItemChecked:before {
+    border: 1px solid rgb(61, 135, 245);
+    border-radius: 2px;
+    background-color: #3d87f5;
+    background-repeat: no-repeat;
+  }
+  .TextEditorTheme__listItemChecked:after {
+    content: '';
+    cursor: pointer;
+    border-color: #fff;
+    border-style: solid;
+    position: absolute;
+    display: block;
+    top: 6px;
+    width: 3px;
+    left: 7px;
+    right: 7px;
+    height: 6px;
+    transform: rotate(45deg);
+    border-width: 0 2px 2px 0;
+  }
+  .TextEditorTheme__nestedListItem {
+    list-style-type: none;
+  }
+  .TextEditorTheme__nestedListItem:before,
+  .TextEditorTheme__nestedListItem:after {
+    display: none;
+  }

@@ -133,12 +133,16 @@ const ImageStatic = ({
       className={`${className} border border-sh-five border-dashed rounded-xl flex justify-center items-center bg-bg-two relative`}
       key={id}
     >
-      {isURLValid && (
+      {
         <img
-          src={image || `https://picsum.photos/id/${seed}/500/500?grayscale`}
+          src={
+            isURLValid && image
+              ? image
+              : `https://picsum.photos/id/${seed}/500/500?grayscale`
+          }
           className="rounded-xl w-full h-full"
         />
-      )}
+      }
     </div>
   );
 };

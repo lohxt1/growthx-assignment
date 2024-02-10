@@ -1,7 +1,40 @@
+// Useful Resources
+// - https://github.com/acywatson/glyf (suggested by official lexical docs)
+// - https://github.com/facebook/lexical/tree/main/packages/lexical-playground
+
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
+import { ListNode, ListItemNode } from "@lexical/list";
+
+const theme = {
+  text: {
+    bold: "TextEditorTheme__textBold",
+    italic: "TextEditorTheme__textItalic",
+    underline: "TextEditorTheme__textUnderline",
+    strikethrough: "TextEditorTheme__textStrikethrough ",
+    underlineStrikethrough: "TextEditorTheme__textUnderlineStrikethrough",
+  },
+  list: {
+    checklist: "TextEditorTheme__checklist",
+    listitem: "TextEditorTheme__listItem",
+    listitemChecked: "TextEditorTheme__listItemChecked",
+    listitemUnchecked: "TextEditorTheme__listItemUnchecked",
+    nested: {
+      listitem: "TextEditorTheme__nestedListItem",
+    },
+    olDepth: [
+      "TextEditorTheme__ol1",
+      "TextEditorTheme__ol2",
+      "TextEditorTheme__ol3",
+      "TextEditorTheme__ol4",
+      "TextEditorTheme__ol5",
+    ],
+    ul: "TextEditorTheme__ul",
+  },
+};
 
 const valueInit = {
   root: {
@@ -46,18 +79,19 @@ const FreeTextInputStatic = ({
     onError: (error: Error) => {
       throw error;
     },
+    theme,
     editable: false,
+    nodes: [ListNode, ListItemNode],
   };
 
   return (
     <div className={`relative gap-y-2 flex flex-col ${className}`}>
       <LexicalComposer initialConfig={initialConfig}>
-        <PlainTextPlugin
-          contentEditable={
-            <ContentEditable className="focus-visible:outline-none" />
-          }
+        <ListPlugin />
+        <RichTextPlugin
+          contentEditable={<ContentEditable className="contentEditable" />}
           placeholder={
-            <div className="absolute top-0 left-0 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 pointer-events-none opacity-50"></div>
           }
           ErrorBoundary={LexicalErrorBoundary}
         />
