@@ -9,13 +9,12 @@ const Nav = () => {
         <Infinity height={40} width={40} /> Site Builder
       </Link>
       <div className="flex flex-row gap-8 items-center">
+        <Link to="/" className={location.pathname == "/" ? `text-bl-one` : ""}>
+          Build
+        </Link>
         <Link
           to="/preview"
-          className={
-            location.pathname == "/preview"
-              ? `underline decoration-bl-two/80`
-              : ""
-          }
+          className={location.pathname == "/preview" ? `text-bl-one` : ""}
         >
           Preview
         </Link>
