@@ -47,14 +47,16 @@ const HeroEditor = ({
           <div>{siteTitle}</div>
         </div>
         <div className="flex flex-row grid grid-cols-3 gap-x-24">
-          <div className="col-span-1 flex flex-col gap-y-4">
+          <div className="col-span-1 flex flex-col gap-y-8">
             <ImageStatic
               className="w-full h-[400px] p-4"
               id={`image`}
               value={image}
             />
-            <div>{name}</div>
-            <div>{email}</div>
+            <div className="flex flex-col gap-y-2">
+              <div className="font-bold text-md">{name}</div>
+              <div>{email}</div>
+            </div>
           </div>
           <div className="flex flex-col w-full gap-y-4 col-span-2 justify-start">
             <FreeTextInputStatic

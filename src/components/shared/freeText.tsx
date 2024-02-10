@@ -86,11 +86,11 @@ function TextFormatToolbarPlugin(): JSX.Element {
   const getIcon = (format: TextFormatType): JSX.Element | null => {
     switch (format) {
       case "bold":
-        return <BoldIcon />;
+        return <BoldIcon className="w-[20px] h-[20px]" />;
       case "italic":
-        return <ItalicIcon />;
+        return <ItalicIcon className="w-[20px] h-[20px]" />;
       case "underline":
-        return <Underline />;
+        return <Underline className="w-[20px] h-[20px]" />;
       default:
         return null;
     }
@@ -121,6 +121,7 @@ function TextFormatToolbarPlugin(): JSX.Element {
             e.preventDefault();
             onClick(format);
           }}
+          className="cursor-pointer"
         >
           {getIcon(format)}
         </div>
@@ -154,15 +155,17 @@ function ListToolbarPlugin(): JSX.Element {
         onClick={() => {
           onClick("ol");
         }}
+        className="cursor-pointer"
       >
-        <ListOrdered />
+        <ListOrdered className="w-[20px] h-[20px]" />
       </div>
       <div
         onClick={() => {
           onClick("ul");
         }}
+        className="cursor-pointer"
       >
-        <ListIcon />
+        <ListIcon className="w-[20px] h-[20px]" />
       </div>
     </div>
   );
@@ -195,6 +198,7 @@ const FreeTextInput = ({
 
   const onChange = (_editorState: any) => {
     const editorStateJSON = _editorState.toJSON();
+    console.log(editorStateJSON);
     setEditorState(JSON.stringify(editorStateJSON));
   };
 
@@ -207,7 +211,7 @@ const FreeTextInput = ({
         initialConfig={initialConfig}
         key={`editor-composer-${id}`}
       >
-        <div className="flex flex-row gap-2 absolute bottom-[-43px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center">
+        <div className="flex flex-row gap-2 absolute bottom-[-38px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center">
           <TextFormatToolbarPlugin />
           <ListToolbarPlugin />
         </div>
