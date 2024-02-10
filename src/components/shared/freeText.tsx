@@ -27,7 +27,12 @@ import {
   ListOrdered,
   Underline,
 } from "lucide-react";
-import { $isRangeSelection, $getSelection, type TextFormatType } from "lexical";
+import {
+  $isRangeSelection,
+  $getSelection,
+  type TextFormatType,
+  TextNode,
+} from "lexical";
 
 const theme = {
   heading: {
@@ -176,7 +181,6 @@ function TextFormatToolbarPlugin(): JSX.Element {
     "bold",
     "italic",
     "underline",
-    "highlight",
   ];
   return (
     <>
@@ -199,10 +203,19 @@ function TextFormatToolbarPlugin(): JSX.Element {
 function OnChangePlugin({ onChange }: { onChange: (v: any) => void }) {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
-    const removeTransform = editor.registerNodeTransform(
+    const removeHashtagTransform = editor.registerNodeTransform(
       HashtagNode,
       (textNode) => {
         if (!textNode.hasFormat("highlight")) {
+          textNode.toggleFormat("highlight");
+        }
+      }
+    );
+
+    const removeInverseHashTagTransform = editor.registerNodeTransform(
+      TextNode,
+      (textNode) => {
+        if (textNode.hasFormat("highlight")) {
           textNode.toggleFormat("highlight");
         }
       }
@@ -215,7 +228,8 @@ function OnChangePlugin({ onChange }: { onChange: (v: any) => void }) {
     );
 
     return () => {
-      removeTransform();
+      removeHashtagTransform();
+      removeInverseHashTagTransform();
       removeEditorChange();
     };
   }, [editor, onChange]);
@@ -292,7 +306,7 @@ const FreeTextInput = ({
         initialConfig={initialConfig}
         key={`editor-composer-${id}`}
       >
-        <div className="flex flex-row gap-2 absolute bottom-[-50px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center text-sm">
+        <div className="flex flex-row gap-2 absolute bottom-[-50px] left-0 border border-sh-three rounded-lg p-2 py-1 bg-bg-zero items-center text-sm z-10">
           <HeadingToolbarPlugin />
           <TextFormatToolbarPlugin />
           <ListToolbarPlugin />

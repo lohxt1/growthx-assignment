@@ -53,6 +53,7 @@
   }
   mark {
     background-color: transparent;
+    margin-right: 5px;
   }
   .TextEditorTheme__hashtag {
     background-color: #0094ff99;

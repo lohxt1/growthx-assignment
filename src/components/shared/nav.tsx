@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const Nav = () => {
   const location = useLocation();
   return (
-    <div className="w-full h-[60px] bg-bg-opp flex flex-row fixed top-0 left-0 z-10 justify-between text-white px-8 items-center">
+    <div className="w-full h-[60px] bg-bg-opp flex flex-row fixed top-0 left-0 justify-between text-white px-8 items-center z-20">
       <Link to="/" className={`flex flex-row gap-4 items-center`}>
         <Infinity height={40} width={40} /> Site Builder
       </Link>
